@@ -1,0 +1,3 @@
+/etc/pulse/system.pa	load-module module-bluetooth-policy
+/etc/pulse/system.pa	load-module module-bluetooth-discover
+/etc/pulse/system.pa	load-module module-switch-on-connect

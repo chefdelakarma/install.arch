@@ -1,0 +1,10 @@
+acpid.service
+apparmor.service
+atd.service 
+bluetooth.service
+#NetworkManager-wait-online.service
+NetworkManager.service
+nftables.service
+fstrim.timer
+logrotate.timer
+
