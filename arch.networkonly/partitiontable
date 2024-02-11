@@ -1,0 +1,5 @@
+#mountpoint	device	fs	fsoptions
+/	/dev/nvme0n1p5	ext4	noatime
+/boot	/dev/nvme0n1p4	ext4	noatime,nodev,nosuid
+/home	/dev/nvme0n1p6	ext4	noatime,nodev,nosuid
+
