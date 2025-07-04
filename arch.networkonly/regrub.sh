@@ -1,7 +1,7 @@
 #!/bin/bash
 
 root=${1:-"/dev/nvme0n1p4"}
-mnt={2:-"/mnt"}
+mnt=${2:-"/mnt"}
 
 mount ${root} ${mnt}
 for i in /dev /dev/pts /proc /sys /run
