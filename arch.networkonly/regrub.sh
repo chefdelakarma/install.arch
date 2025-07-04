@@ -8,9 +8,11 @@ for i in /dev /dev/pts /proc /sys /run
 do mount --bind $i ${mnt}$i
 done
 
-chroot ${mnt} /bin/bash -x << 'EOF'
+chroot ${mnt} bash << 'EOF'
 	mount -a
+	sleep 30
 	mount -t efivarfs efivarfs /sys/firmware/efi/efivars
+	sleep 30
 	grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 	grub-mkconfig -o /boot/grub/grub.cfg
 EOF
