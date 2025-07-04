@@ -8,7 +8,7 @@ for i in /dev /dev/pts /proc /sys /run
 do mount --bind $i ${mnt}$i
 done
 
-chroot ${mnt} bash << 'EOF'
+chroot ${mnt} /bin/bash << 'EOF'
 	mount -a
 	sleep 30
 	mount -t efivarfs efivarfs /sys/firmware/efi/efivars
