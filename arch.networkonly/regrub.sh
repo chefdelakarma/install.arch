@@ -12,14 +12,19 @@ mount -v -t efivarfs efivarfs ${mnt}/sys/firmware/efi/efivars
 
 chroot ${mnt} /bin/bash << 'EOF'
 	mount -av
-	sleep 5
+	sleep 30
 	grub-install -v --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 	grub-mkconfig -v -o /boot/grub/grub.cfg
 EOF
 
-umount -v ${mnt}/sys/firmware/efi/efivars
+umount -v {mnt}/sys/firmware/efi/efivars
 
-for i in /dev/pts /dev /proc /sys /run /
+for i in /dev/pts /dev /proc /sys /run
 do umount -v ${mnt}$i
+done
+for i in $(awk '!/^#/ && NF {print $2}' ${mnt}/etc/fstab | sort -r); do
+	if [[ $i != "none" ]]; then
+		umount -v ${mnt}$i
+	fi
 done
 
