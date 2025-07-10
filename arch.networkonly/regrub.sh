@@ -19,8 +19,7 @@ EOF
 
 umount -v ${mnt}/sys/firmware/efi/efivars
 
-for i in /dev/pts /dev /proc /sys /run
+for i in /dev/pts /dev /proc /sys /run /
 do umount -v ${mnt}$i
 done
-umount ${mnt}
 
