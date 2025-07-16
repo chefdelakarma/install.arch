@@ -12,7 +12,7 @@ mount -v -t efivarfs efivarfs ${mnt}/sys/firmware/efi/efivars
 
 chroot ${mnt} /bin/bash << 'EOF'
 	mount -av
-	sleep 30
+	sleep 5
 	grub-install -v --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 	grub-mkconfig -v -o /boot/grub/grub.cfg
 EOF
