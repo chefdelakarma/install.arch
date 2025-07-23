@@ -2,10 +2,11 @@
 
 root=${1:-"/dev/nvme0n1p4"}
 mnt=${mnt:-"/mnt"}
+[[ -d ${mnt} ]] || mkdir -pv ${mnt}
 
 mount ${root} ${mnt}
 for i in /dev /dev/pts /proc /sys /run
-do mount --bind $i ${mnt}$i
+do mount -v --bind $i ${mnt}$i
 done
 
 mount -v -t efivarfs efivarfs ${mnt}/sys/firmware/efi/efivars
