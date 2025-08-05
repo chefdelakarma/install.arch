@@ -19,12 +19,5 @@ chroot ${mnt} /bin/bash << 'EOF'
 	grub-mkconfig -v -o /boot/grub/grub.cfg
 EOF
 
-for i in /sys/firmware/efi/efivars /dev/pts /dev /proc /sys /run
-do umount -v ${mnt}$i
-done
-for i in $(awk '!/^#/ && NF {print $2}' ${mnt}/etc/fstab | sort -r); do
-	if [[ $i != "none" ]]; then
-		umount -v ${mnt}$i
-	fi
-done
+umount -R ${mnt}
 
