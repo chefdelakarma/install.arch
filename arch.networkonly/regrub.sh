@@ -1,4 +1,5 @@
 #!/bin/bash
+#re-install grub
 
 root=${1:-"/dev/nvme0n1p4"}
 mnt=${mnt:-"/mnt"}
