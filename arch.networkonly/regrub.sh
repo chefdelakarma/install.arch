@@ -7,16 +7,16 @@ mnt=${mnt:-"/mnt"}
 
 mount ${root} ${mnt}
 for i in /dev /dev/pts /proc /sys /run
-do mount -v --bind $i ${mnt}$i
+do mount --bind $i ${mnt}$i
 done
 
-mount -v -t efivarfs efivarfs ${mnt}/sys/firmware/efi/efivars
+mount -t efivarfs efivarfs ${mnt}/sys/firmware/efi/efivars
 
 chroot ${mnt} /bin/bash << 'EOF'
 	mount -av
 	sleep 5
-	grub-install -v --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-	grub-mkconfig -v -o /boot/grub/grub.cfg
+	grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+	grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
 umount -R ${mnt}
